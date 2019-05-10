@@ -1,0 +1,56 @@
+
+<- Vector ----------------------------------------------------------------------
+The Vector class handles translation in 3D space.
+
+An instance can be contructed with 2 Vertex
+new Vector( array( 'dest' => (See Vertex.doc.txt), 'orig' => (See Vertex.doc.txt)));
+
+orig is optional and default to new Vertex(array("x" => 0, "y" => 0, "z" => 0)).
+Any other use is undefined behaviour.
+
+The class provides the following accessors:
+
+float   x;
+x coordinate of this Vector.
+
+float   y;
+y coordinate of this Vector.
+
+float   z;
+z coordinate of this Vector.
+
+float   w;
+fourth (w) coordinate of this Vector. (Always 0)
+
+This class is immutable
+
+The class provides the following methods :
+
+float   magnitude();
+Return the norm of the Vector
+
+Vector  normalize();
+Return a new Vector normalized (with a norm of 1) based on current Vector
+
+Vector  add( Vector $rhs );
+Add each Vector constitutive and return a new Vector instance
+
+Vector  sub( Vector $rhs );
+Substract each Vector constitutive and return a new Vector instance
+
+Vector  opposite();
+Negate each componenets and return a new Vector instance
+
+Vector  scalarProduct( $k ):
+Return the scalar product of this vector and $k as a new Vector instance
+
+float   dotProduct( Vector $rhs ):
+Return the dot product of this vector and $rhs
+
+float   cos( Vector $rhs ):
+Return the cosine between this vector and $rhs
+
+Vector crossProduct( Vector $rhs ):
+Return the crossProduct between this vector and $rhs
+
+---------------------------------------------------------------------- Vector ->

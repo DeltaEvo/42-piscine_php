@@ -1,0 +1,161 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #505050;
+}
+
+.box {
+  background: #909090;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px #000;
+  padding: 10px;
+}
+
+header {
+  margin-top: 11px;
+  height: 136px;
+  width: 75vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+header .logo {
+  height: 110px;
+  margin-right: auto;
+}
+
+header .glass {
+  margin-bottom: -30px;
+}
+
+header .buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .buttons img {
+  width: 20px;
+  height: 20px;
+}
+
+section {
+  width: 75vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+
+section .toolbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 7.4vw;
+  height: 425px;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+section .toolbox > * {
+  border: solid 5px transparent;
+  border-radius: 5px;
+}
+
+section .toolbox > img {
+  width: 70px;
+}
+
+section .toolbox .brick {
+  display: block;
+  margin: 0 10px;
+  height: 70px;
+  background: url(resources/brick.jpg);
+}
+
+section .image {
+  display: flex;
+  align-items: center;
+}
+
+section .image .container {
+  position: relative;
+}
+
+section .image .container .screen {
+  position: absolute;
+  bottom: 18%;
+  right: 2%;
+  width: 20%;
+  height: 27%;
+}
+
+section .image .container .chair {
+  position: absolute;
+  bottom: 2%;
+  right: 54%;
+  width: 13%;
+  height: 40%;
+}
+
+section .image .container > img {
+  width: 52.9vw;
+}
+
+section .image > img {
+  width: 52.9vw;
+}
+
+.dialog {
+  align-self: start;
+  margin-left: 10vw;
+  margin-top: -10vh;
+  bottom: 55px;
+  left: 12vw;
+  background: #86ff89;
+  height: 173px;
+  width: 27.5vw;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  justify-content: flex-start;
+  z-index: 1;
+}
+
+.dialog > p {
+  margin: 0;
+}
+
+.dialog .italic {
+  font-style: italic;
+}
+
+.dialog .big {
+  font-size: 35px;
+}
+
+.dialog .shadow {
+  text-shadow: red 7px 7px 7px;
+}
+
+.dialog .answer {
+  display: flex;
+  flex-direction: row;
+}
+
+.dialog .answer > input {
+  width: 100%;
+  margin: 2px;
+  height: 20px;
+  border: inset 2px #eee;
+}
+
+.dialog .answer > button {
+  background-image: linear-gradient(to top,#e4e4e4,#f7f7f7);
+  border: 1px solid #afafaf;
+  border-radius: 2px;
+}

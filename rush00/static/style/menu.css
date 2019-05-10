@@ -1,0 +1,87 @@
+body
+{
+    background-color: white;
+    background-size: cover;
+}
+
+body nav.menu
+{
+    font-size: 0.8vw;
+    font-family: Cursive;
+    color: rgb(49, 46, 46);
+    display: block;
+    text-align: center
+}
+
+body nav ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-style: outset;
+    border: 2px black;
+}
+
+body nav ul li
+{
+    float: left;
+    width: 20vw;
+    height: 4vh;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    text-align: center;
+    line-height: 4vh;
+}
+
+body nav > ul > li > a
+{
+    display: block;
+}
+
+body nav ul li a:hover
+{
+    background-color: orangered;
+}
+
+ul ul, ul ul ul
+{
+    display: none;
+}
+
+nav ul li:hover ul.niveau2, nav ul li ul li:hover ul
+{
+    display: block;
+}
+
+body nav ul li ul li ul.first
+{
+    float: left;
+    width: 20vw;
+    height: 4vh;
+    margin-left: 20vw;
+    margin-top: -12%;
+    text-align: center;
+    line-height: 4vh;
+}
+body nav ul li ul li ul.second
+{
+    float: left;
+    width: 20vw;
+    height: 4vh;
+    margin-left: 20vw;
+    text-align: center;
+    line-height: 4vh;
+}
+
+.colorsubmenu
+{
+    font-size: 0.8vw;
+    color: rgb(49, 46, 46);
+    text-decoration: none;
+}
+
+#menu-deroulant-border
+{
+    border-bottom: 1px solid rgb(189, 184, 115);
+}

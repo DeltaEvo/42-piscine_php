@@ -1,0 +1,19 @@
+nav.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+    padding: 8px;
+    color: white;
+}
+
+nav .title {
+    margin: 0;
+}
+
+nav.retour-site 
+{
+
+    margin: 0;
+    color: white;
+}

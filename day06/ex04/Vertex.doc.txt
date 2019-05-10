@@ -1,0 +1,29 @@
+
+<- Vertex ----------------------------------------------------------------------
+The Vertex class handles points in 3D space.
+
+An instance can be contructed with 3 coordinates, a fourth coordinate (w) and a color:
+new Vertex( array( 'x' => 1, 'y' => 2, 'z' => 3, 'w' => 1.0, 'color' => (See Color.doc.txt) ) );
+
+x, y, z and w are converted to floats.
+w and color are optionals respectively taking values 1.0 and white if not specified.
+Any other use is undefined behaviour.
+
+The class provides the following accessors and mutators:
+
+float   x;
+x coordinate of this Vertex.
+
+float   y;
+y coordinate of this Vertex.
+
+float   z;
+z coordinate of this Vertex.
+
+float   w;
+fourth (w) coordinate of this Vertex.
+
+Color   color;
+color of this Vertex
+
+---------------------------------------------------------------------- Vertex ->

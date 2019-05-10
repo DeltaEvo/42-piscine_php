@@ -1,0 +1,38 @@
+#cart {
+    transition: opacity 300ms;
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    width: 75vw;
+    background: white;
+    box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2), 0px 10px 14px 1px rgba(0,0,0,0.14), 0px 4px 18px 3px rgba(0,0,0,0.12);
+}
+
+#cart.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#cart .bar, #cart .bottom {
+    padding: 8px;
+    width: 100%;
+    background: var(--primary-color);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    box-sizing: border-box;
+}
+
+#cart .bar > h3 {
+    margin: 0;
+}
+
+#cart .content {
+    height: 70vh;
+    overflow-y: scroll;
+}

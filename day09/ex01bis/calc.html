@@ -1,0 +1,71 @@
+<style>
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<input type="text" id="left">
+<select id="op">
+    <option>+</option>
+    <option>-</option>
+    <option>*</option>
+    <option>/</option>
+    <option>%</option>
+</select>
+<input type="text" id="right">
+<input type="submit" value="Try me!" id="btn">
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.js"
+  integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+  crossorigin="anonymous"></script>
+<script>
+    const left = $("#left");
+    const rigth = $("#right");
+    const op = $("#op");
+    const btn = $("#btn");
+
+    const log = (msg) => {
+        alert(msg);
+        console.log(msg);
+    }
+
+    btn.click(() => {
+        const [nb1 = null, nb2 = null] = [left.val(), rigth.val()]
+            .map(e => e.trim())
+            .filter(e => e.match(/(\+|\-)?\d+/))
+            .map(e => +e)
+        if (nb1 === null || nb2 === null || nb1 < 0 || nb2 < 0) {
+            alert("Error :(");
+        } else {
+            let res = 0;
+            switch (op.val()) {
+                case "+":
+                    res = nb1 + nb2;
+                    break ;
+                case "-":
+                    res = nb1 - nb2;
+                    break ;
+                case "*":
+                    res = nb1 * nb2;
+                    break ;
+                case "/":
+                case "%":
+                    if (nb2 === 0) {
+                        log("It’s over 9000!");
+                        return ;
+                    } else if (op.val() === "/")
+                        res = nb1 / nb2;
+                    else
+                        res = nb1 / nb2;
+                    break ;
+                default:
+                    alert("Error :(");
+                    return ;
+            }
+            log(res);
+        }
+    })
+
+    setInterval(alert.bind(null, "Please, use me..."), 30000);
+</script>

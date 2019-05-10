@@ -1,0 +1,55 @@
+
+<- Matrix ----------------------------------------------------------------------
+The Matrix class handles transformations in 3D space.
+
+An instance can be contructed based on a preset:
+
+Matrix::IDENTITY:
+    An identity Matrix
+    new Matrix(array('preset' => Matrix::IDENTITY))
+Matrix::SCALE:
+    A scale Matrix
+    This preset need an extra parameter: 'scale' representing a scale factor
+    new Matrix(array('preset' => Matrix::IDENTITY, 'scale' => 2.0))
+
+Matrix::RX | Matrix::RY | Matrix::RZ:
+    A (X|Y|Z) rotation Matrix
+    This preset need an extra parameter: 'angle' representing an angle in radians
+    new Matrix(array('preset' => Matrix::RY, 'angle' => M_PI))
+
+Matrix::TRANSLATION;
+    A translation Matrix
+    This preset need an extra parameter: A Vertex 'vtc' representing the translation
+    new Matrix(array('preset' => Matrix::TRANSLATION, 'vtc' => (See Vertex.doc.txt))
+
+Matrix::PROJECTION;
+    A projection Matrix
+    This preset need many extra parameters:
+        fov: Field Of Fiew in degree
+        ratio: ratio of the screen: width/height
+        near: z coordinate of near plane
+        far: z coordinate of far plane
+    new Matrix(array('preset' => Matrix::PROJECTION, 'fov' => 60, 'ratio': 16/9, 'near': 1.0, 'far': 50.0))
+
+Matrix::RAW:
+    A raw Matrix
+    This preset need an extra parameter: 'data' representing a 4d array
+    new Matrix(array('preset' => Matrix::RAW, 'data' => array(...)))
+
+This class is immutable
+
+The class provides the following methods :
+
+Matrix mult( Matrix $rhs );
+Return a new Matrix resulting of the multiplication of the current matrix and rhs
+
+Vertex transformVertex( Vertex $vtx );
+Return a new Vertex resulting of the multiplication of the current matrix and rhs
+
+Matrix symetric();
+Return the symetric of this matrix as a new Matrix instance
+
+Array<Triangle> transformMesh( Array<Triangle> $mesh )
+Return a new array resulting of the transformations of all the vertices of the triangle
+
+---------------------------------------------------------------------- Matrix ->

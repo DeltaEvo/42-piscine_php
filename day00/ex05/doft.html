@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<link rel="stylesheet" href="doft.css">
+<header class="box">
+    <img class="logo" alt="logo" src="resources/day_of_the_42.png">
+    <img class="glass" alt="loupe" src="resources/loupe.png">
+    <div class="buttons">
+        <img id="reload" title="Recommencer au début" alt="Recommencer au début" src="resources/reload.png">
+        <img id="close" title="Déconnecter" src="resources/close.gif">
+    </div>
+</header>
+<section>
+    <div class="box toolbox">
+        <img title="Avancer" alt="Avancer" src="resources/arrow.png">
+        <img title="Prendre" alt="Prendre" src="resources/main.png">
+        <img title="Regarder" alt="Regarder" src="resources/oeil.png">
+        <img title="Utiliser" alt="Utiliser" src="resources/outil.png">
+        <img title="Parler" alt="Parler" src="resources/chat-icon.png">
+    </div>
+    <div class="box image">
+        <div class="container" id="scene">
+            <img src="resources/cluster.jpg">
+            <span class="pnj" data-desc="PNJ" data-speek="J'aime les licornes et leur jolies cornes ..."></span>
+            <span class="door" data-desc="Portes" data-speek="..."></span>
+            <p id="text" class="text"></p>
+            <a class="chair" data-desc="Knut Knut Knut chair" data-speek="Knut Knut Knut" title="Knut Knut Knut" href="https://www.ikea.com/"></a>
+            <a class="screen" data-desc="La pomme d'ecran" title="La pomme" href="https://www.apple.com/"></a>
+            <div id="wall" style="display: none;"></div>
+            <div id="outside" style="display: none;"></div>
+        </div>
+    </div>
+    <div class="box toolbox">
+        <img title="Livre" alt="Livre" src="resources/book.png">
+        <img title="Serviette" alt="Serviette" src="resources/towel.png">
+        <div style="width: 100%" title="Le Mur Portugais">
+            <span title="Le Mur Portugais" alt="Le Mur Portugais" class="brick"></span>
+        </div>
+    </div>
+</section>
+<section class="dialog box">
+    <p>Vous <span class="big">entrez</span> dans une grande piece remplie d'<span class="shadow">ordinateurs</span>...<br></p>
+    <p class="italic">- Bonjour, vous êtes nouveau ici ?</p>
+    <div class="answer">
+        <input id="input"/>
+        <button id="answer">Repondre</button>
+    </div>
+</section>
+<script src="doft.js"></script>

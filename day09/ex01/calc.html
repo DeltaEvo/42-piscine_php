@@ -1,0 +1,67 @@
+<style>
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<input type="text" id="left">
+<select id="op">
+    <option>+</option>
+    <option>-</option>
+    <option>*</option>
+    <option>/</option>
+    <option>%</option>
+</select>
+<input type="text" id="right">
+<input type="submit" value="Try me!" id="btn">
+<script>
+    const left = document.getElementById("left");
+    const rigth = document.getElementById("right");
+    const op = document.getElementById("op");
+    const btn = document.getElementById("btn");
+
+    const log = (msg) => {
+        alert(msg);
+        console.log(msg);
+    }
+
+    btn.addEventListener("click", () => {
+        const [nb1 = null, nb2 = null] = [left.value, rigth.value]
+            .map(e => e.trim())
+            .filter(e => e.match(/(\+|\-)?\d+/))
+            .map(e => +e)
+        if (nb1 === null || nb2 === null || nb1 < 0 || nb2 < 0) {
+            alert("Error :(");
+        } else {
+            let res = 0;
+            switch (op.value) {
+                case "+":
+                    res = nb1 + nb2;
+                    break ;
+                case "-":
+                    res = nb1 - nb2;
+                    break ;
+                case "*":
+                    res = nb1 * nb2;
+                    break ;
+                case "/":
+                case "%":
+                    if (nb2 === 0) {
+                        log("It’s over 9000!");
+                        return ;
+                    } else if (op.value === "/")
+                        res = nb1 / nb2;
+                    else
+                        res = nb1 / nb2;
+                    break ;
+                default:
+                    alert("Error :(");
+                    return ;
+            }
+            log(res);
+        }
+    })
+
+    setInterval(alert.bind(null, "Please, use me..."), 30000);
+</script>

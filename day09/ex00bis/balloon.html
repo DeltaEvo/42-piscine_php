@@ -1,0 +1,56 @@
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #balloon {
+        position: relative;
+        border-radius: 50%;
+        background: radial-gradient(circle at 40% 30%, white -50px, var(--color) 60%);
+        transition: width 500ms, height 250ms;
+        cursor: pointer;
+    }
+
+    #balloon::before {
+        position: absolute;
+        content: "";
+        height: 0;
+        width: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -10px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 20px solid var(--color);
+    }
+</style>
+<div id="balloon"></div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.js"
+  integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA="
+  crossorigin="anonymous"></script>
+<script>
+const balloon = document.getElementById("balloon");
+let currentSize = 200;
+let color = 0;
+
+const increaseSize = (size) => () => {
+    currentSize += size;
+    if (currentSize > 420)
+        currentSize = 200;
+    if (currentSize < 200)
+        currentSize = 200;
+    else
+        color += Math.sign(size);
+    color = color < 0 ? color + 3 : color % 3;
+    balloon.style.setProperty('--color', ['red', 'green', 'blue'][color]);
+    balloon.style.width = currentSize + 'px';
+    balloon.style.height = currentSize + 'px';
+}
+
+$(balloon).click(increaseSize(10));
+$(balloon).mouseout(increaseSize(-5));
+increaseSize(0)();
+</script>

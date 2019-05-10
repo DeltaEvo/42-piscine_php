@@ -1,0 +1,23 @@
+
+<- Camera ----------------------------------------------------------------------
+The Camera class a virtual camera in a 3d space.
+
+An instance can be contructed with:
+origin: A Vertex representing the Position of the camera
+orientation: A Matrix representing the rotation of the camera
+width: Width of the screen
+height: Height of the screen
+ratio: Ratio of the screen (width/height) incompatible with keys ’width’ and ’height’.
+fov: Field Of Fiew in degree
+near: z coordinate of near plane
+far: z coordinate of far plane
+fov: Field of view
+
+Any other use is undefined behaviour.
+
+The class provides the following methods :
+
+Vertex  watchVertex( Vertex $worldVertex );
+Transform a "world" vertex into a "screen" vertex
+
+---------------------------------------------------------------------- Camera ->

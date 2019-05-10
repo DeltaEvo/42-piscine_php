@@ -1,0 +1,21 @@
+
+<- Triangle ----------------------------------------------------------------------
+The Triangle class handles points in 3D space.
+
+An instance can be contructed with 3 Vertices (see Vertex.doc.txt)
+new Triangle(new Vertex(...), new Vertex(...), new Vertex(...))
+
+Any other use is undefined behaviour.
+
+The class provides the following accessors and mutators:
+
+Vertex   A;
+First point of the triangle
+
+Vertex   B;
+Second point of the triangle
+
+Vertex   C;
+Third point of the triangle
+
+---------------------------------------------------------------------- Triangle ->

@@ -1,0 +1,621 @@
+<link rel="stylesheet" href="/style/root.css">
+<link rel="stylesheet" href="/style/login.css">
+<link rel="stylesheet" href="/admin/style/menuadmin.css">
+<link rel="stylesheet" href="/admin/style/admin.css">
+<link rel="stylesheet" href="/admin/style/nav.css">
+<link rel="stylesheet" href="/admin/style/manage_product.css">
+<link rel="stylesheet" href="/admin/style/manage_users.css">
+<link rel="stylesheet" href="/admin/style/manage_commandes.css">
+
+<nav class="header">
+  <h1 class="title">Minion Store Admin</h1>
+  <a href="../index.html">retour site </a>
+  <with-user role="admin">
+    <div slot="none">
+      <button id="login_btn">S'Identifiez</button>
+    </div>
+    <div slot="logged">
+      Welcome
+      <user-name></user-name>
+      <user-img></user-img>
+      <button id="logout_btn">Se deconnecter</button>
+    </with-user>
+  </div>
+
+
+</nav>
+<with-user role="admin">
+  <div slot="none" class="unauthorized">
+    <div class="unauthorized_image">
+      <img src="https://media.giphy.com/media/njYrp176NQsHS/giphy.gif">
+    </div>
+    <h3>You are not allowed to see this page
+      <user-name/>
+    </h3>
+  </div>
+</with-user>
+
+<with-user role="admin">
+    <div slot="logged">
+<ul id="menu-accordeon">
+  <li>
+    <a href="#">Gestion des produits</a>
+    <ul>
+      <li>
+        <a id="nouveau_produit_btn" href="#">Ajouter un produit</a>
+      </li>
+      <li>
+        <a id="remove_product_btn" href="#">Supprimer un produit</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#">Gestion utilisateurs</a>
+    <ul>
+      <li>
+        <a id="new_user_btn" href="#">Ajouter un nouvel utilisateur</a>
+      </li>
+      <li>
+        <a id="remove_user_btn" href="#">supprimer un utilisateur</a>
+      </li>
+      <li>
+        <a id="modify_user_btn" href="#">Modifier un utilisateur</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+      <a href="#">Gestion commandes</a>
+      <ul>
+        <li>
+          <a id="del_commande_btn" href="#">supprimer une commandes</a>
+        </li>
+        <li>
+          <a id="modify_commande_btn" href="#">Modifier une commandes</a>
+        </li>
+      </ul>
+    </li>
+</ul>
+</div>
+</with-user>
+
+
+<iframe style="background: white; width: 100%; height: 100%;" frameborder="0" src="/api/orders"></iframe>
+
+  <!---page de connection/create/login-->
+  <form id="login">
+      <div class="imgcontainer">
+        <img src="../resources/minion.jpeg" alt="minion" class="minion">
+      </div>
+    
+      <div>
+        <b>Admin username</b>
+        <input type="text" placeholder="Enter Username" name="username" required="required">
+        <b>Password</b>
+        <input type="password" placeholder="Enter Password" name="password" required="required">
+        <input type="checkbox" checked="checked" name="remember">
+        Remember me
+        <button id="login_submit">Login</button>
+        <button id="signup_submit">Sign up</button>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" id="cancel_btn" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot
+          <a href="#">password?</a>
+        </span>
+      </div>
+    </form>
+    
+
+<!---Page pour nouveau produit-->
+<form id="nouveau_produit">
+    <div>
+      <b>Product Name</b>
+      <input type="text" placeholder="Enter Product Name" name="new_product_name" required="required">
+      <br />
+      <b>Categories</b>
+      <input type="text" placeholder="Enter Category" name="new_product_category" required="required">
+      <br />
+      <b>Price (in centime)</b>
+      <input type="text" placeholder="Enter Price" name="new_product_price" required="required">
+      <br />
+      <b>image</b>
+      <input type="text" placeholder="Enter image" name="new_product_image">
+      <br />
+      <button style="float:right" id="create_product_btn">Create new product</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="cancel_btn_nouveau_produit" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+  <!---Page pour remove produit-->
+<form id="remove_product">
+    <div>
+      <b>Product Id</b>
+      <input type="text" placeholder="Enter Product Name" name="remove_product_id" required="required">
+      <br />
+      <button style="float:right" id="remove_product_btn_valid">Remove product</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="cancel_btn_remove_product" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+    <!---Page pour new user-->
+<form id="new_user">
+    <div>
+      <b>User name</b>
+      <input type="text" placeholder="Enter user Name" name="new_user_name" required="required">
+      <br />
+      <b>Password</b>
+      <input type="password" placeholder="Enter Password" name="new_user_password" required="required">
+      <br />
+      <b>Role</b>
+      <input type="text" placeholder="Enter Role" name="new_user_role" required="required">
+      <br />
+      <button style="float:right" id="new_user_btn_valid">Add user</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="new_user_cancel_btn" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+
+      <!---Page pour delete user-->
+<form id="remove_user">
+    <div>
+      <b>User name</b>
+      <input type="text" placeholder="Enter user Name" name="delete_user_name" required="required">
+       <br />
+      <button style="float:right" id="delete_user_btn_valid">delete user</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="delete_user_cancel_btn" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+        <!---Page pour modify user-->
+<form id="modify_user">
+    <div>
+      <b>User name</b>
+      <input type="text" placeholder="Enter user Name" name="modify_user_name" required="required">
+       <br />
+       <b>New user name</b>
+       <input type="text" placeholder="Enter new user Name" name="modified_user_name " required="required">
+        <br />
+        <b>New passwd</b>
+        <input type="passwd" placeholder="Enter new user passwd" name="modified_user_passwd" required="required">
+         <br />
+         <b>New role</b>
+         <input type="passwd" placeholder="Enter user new role" name="modified_user_role" required="required">
+          <br />
+      <button style="float:right" id="modify_user_btn_valid">modify user</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="modify_user_cancel_btn" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+          <!---Page pour supprimer commande-->
+<form id="del_commande">
+    <div>
+      <b>Order ID</b>
+      <input type="text" placeholder="Order id" name="del_commande_order_id" required="required">
+       <br />
+      <button style="float:right" id="del_commande_user_btn_valid">delete commande</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="del_commande_cancel_btn" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+          <!---Page pour modifier commande-->
+<form id="modif_commande">
+    <div>
+      <b>Order id</b>
+      <input type="text" placeholder="Enter order id" name="modif_commande_order_id" required="required">
+       <br />
+       <b>Product Id</b>
+       <input type="text" placeholder="Enter Product Name" name="modif_commande_product_id" required="required">
+       <br />
+       <b>Product quantity</b>
+       <input type="number" placeholder="Enter Product new quantity" name="modif_commande_product_quantity" required="required" value="1">
+       <br />
+      <button style="float:right" id="modify_commande_user_btn_valid">modifier la commande</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="modify_commande_cancel_btn" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+
+<script src="/components/with-user.js"></script>
+<script src="/components/user-name.js"></script>
+
+
+<!--script pour la page de connection-->
+<script>
+  const login = document.getElementById("login");
+
+  login.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
+  document
+    .getElementById("logout_btn")
+    .addEventListener("click", () => {
+      fetch("/api/auth/logout");
+      window.user = false;
+      window.dispatchEvent(new Event("user-connect"));
+    })
+
+
+  document
+    .getElementById("login_submit")
+    .addEventListener("click", () => {
+      fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({username: login.elements.username.value, password: login.elements.password.value})
+      })
+        .then(res => res.json())
+        .then(({success, user}) => {
+          if (success) {
+            login
+              .classList
+              .remove("active");
+            window.user = user;
+            window.dispatchEvent(new Event("user-connect"));
+          } else
+            alert("Invalid username or password");
+        })
+    });
+
+  document
+    .getElementById("signup_submit")
+    .addEventListener("click", () => {
+      fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({username: login.elements.username.value, password: login.elements.password.value})
+      })
+        .then(res => res.json())
+        .then(({success, user}) => {
+          if (success) {
+            login
+              .classList
+              .remove("active");
+            window.user = user;
+            window.dispatchEvent(new Event("user-connect"));
+          } else
+            alert("Username already taken");
+        })
+    });
+
+  document
+    .getElementById("login_btn")
+    .addEventListener("click", () => {
+      login
+        .classList
+        .add("active");
+    })
+
+      document
+    .getElementById("cancel_btn")
+    .addEventListener("click", () => {
+      login
+        .classList
+        .remove("active");
+    })
+
+  const products = document.getElementById("products");
+
+</script>
+
+
+<!--script pour page creation nouveau produit-->
+<script>
+    const nouveau_produit = document.getElementById("nouveau_produit");
+
+    document
+    .getElementById("nouveau_produit_btn")
+    .addEventListener("click", () => {
+      nouveau_produit
+        .classList
+        .add("active");
+    })
+
+        document
+      .getElementById("cancel_btn_nouveau_produit")
+      .addEventListener("click", () => {
+        nouveau_produit
+          .classList
+          .remove("active");
+      })
+
+    nouveau_produit.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    document.getElementById("create_product_btn")
+      .addEventListener("click", () => {
+        fetch("/api/product", {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nouveau_produit.elements.new_product_name.value,
+            price: +nouveau_produit.elements.new_product_price.value,
+            categories: nouveau_produit.elements.new_product_category.value.split(', '),
+            img: nouveau_produit.elements.new_product_image.value
+          })
+        })
+          .then(res => res.json())
+          .then(({ success }) => {
+            if (!success)
+              alert("Error");
+          })
+      })
+    
+  </script>
+
+
+<!--script pour page remove produit-->
+<script>
+    const remove_product = document.getElementById("remove_product");
+
+    document
+    .getElementById("remove_product_btn")
+    .addEventListener("click", () => {
+      remove_product
+        .classList
+        .add("active");
+    })
+
+        document
+      .getElementById("cancel_btn_remove_product")
+      .addEventListener("click", () => {
+        remove_product
+          .classList
+          .remove("active");
+      })
+
+    remove_product.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    document
+      .getElementById("remove_product_btn_valid")
+      .addEventListener("click", () => {
+        fetch(`/api/product/${remove_product.elements.remove_product_id.value}`, {
+          method: "DELETE"
+        })
+          .then(res => res.json())
+          .then(({ success }) => {
+            if (!success)
+              alert("Error");
+          })
+      })
+  </script>
+
+  <!--script pour page new user -->
+<script>
+    const new_user = document.getElementById("new_user");
+
+    new_user.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    document
+    .getElementById("new_user_btn")
+    .addEventListener("click", () => {
+      new_user
+        .classList
+        .add("active");
+    })
+
+    document
+      .getElementById("new_user_cancel_btn")
+      .addEventListener("click", () => {
+        new_user
+          .classList
+          .remove("active");
+      })
+
+  document.getElementById("new_user_btn_valid")
+      .addEventListener("click", () => {
+        fetch("/api/users", {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            username: new_user.elements.new_user_name.value,
+            password: new_user.elements.new_user_password.value,
+            role: new_user.elements.new_user_role.value
+          })
+        })
+          .then(res => res.json())
+          .then(({success, user}) => {
+            if (!success)
+              alert("Error");
+          })
+      })
+  </script>
+
+    <!--script pour page remove user -->
+<script>
+    const remove_user = document.getElementById("remove_user");
+
+    document
+    .getElementById("remove_user_btn")
+    .addEventListener("click", () => {
+      remove_user
+        .classList
+        .add("active");
+    })
+
+        document
+      .getElementById("delete_user_cancel_btn")
+      .addEventListener("click", () => {
+        remove_user
+          .classList
+          .remove("active");
+      })
+
+      remove_user.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+
+      document.getElementById("delete_user_btn_valid")
+        .addEventListener("click", () => {
+
+          fetch(`/api/users/${remove_user.elements.delete_user_name.value}`, {
+            method: "DELETE"
+          })
+            .then(res => res.json())
+            .then(({ success }) => {
+              if (!success)
+                alert("Error");
+            })
+        })
+  </script>
+
+      <!--script pour page modify user -->
+<script>
+    const modify_user = document.getElementById("modify_user");
+
+    document
+      .getElementById("modify_user_btn")
+      .addEventListener("click", () => {
+        modify_user
+          .classList
+          .add("active");
+      })
+
+    document
+      .getElementById("modify_user_cancel_btn")
+      .addEventListener("click", () => {
+        modify_user
+          .classList
+          .remove("active");
+      })
+      modify_user.addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
+
+      document.getElementById("modify_user_btn_valid")
+        .addEventListener("click", () => {
+            fetch(`/api/users/${modify_user.elements.modify_user_name.value}`, {
+              method: "DELETE"
+            })
+              .then(res => res.json())
+              .then(({ success }) => {
+                if (!success)
+                  alert("Error ... user not found ?");
+
+                fetch("/api/users", {
+                  method: "POST",
+                  headers: {
+                    'content-type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                    username: modify_user.elements.modified_user_name.value,
+                    password: modify_user.elements.modified_user_passwd.value,
+                    role: modify_user.elements.modified_user_role.value
+                  })
+                })
+                  .then(res => res.json())
+                  .then(({success, user}) => {
+                    if (!success)
+                      alert("Error");
+                  })
+              })
+            });
+  </script>
+
+        <!--script pour page del commande -->
+<script>
+    const del_commande = document.getElementById("del_commande");
+
+    del_commande.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    document
+    .getElementById("del_commande_btn")
+    .addEventListener("click", () => {
+      del_commande
+        .classList
+        .add("active");
+    })
+
+        document
+      .getElementById("del_commande_cancel_btn")
+      .addEventListener("click", () => {
+        del_commande
+          .classList
+          .remove("active");
+      })
+
+      document.getElementById("del_commande_user_btn_valid")
+        .addEventListener("click", () => {
+            fetch(`/api/orders/${del_commande.elements.del_commande_order_id.value}`, {
+              method: "DELETE"
+            })
+              .then(res => res.json())
+              .then(({ success }) => {
+                if (!success)
+                  alert("Error");
+              })
+        })
+  </script>
+
+        <!--script pour page modify commande -->
+<script>
+    const modif_commande = document.getElementById("modif_commande")
+
+    modif_commande.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+
+    document
+      .getElementById("modify_commande_btn")
+      .addEventListener("click", () => {
+        modif_commande
+          .classList
+          .add("active");
+      })
+
+    document
+      .getElementById("modify_commande_cancel_btn")
+      .addEventListener("click", () => {
+        modif_commande
+          .classList
+          .remove("active");
+      })
+
+    document.getElementById("modify_commande_user_btn_valid")
+      .addEventListener("click", () => {
+        fetch("/api/orders", {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: modif_commande.elements.modif_commande_order_id.value,
+            product: modif_commande.elements.modif_commande_product_id.value,
+            quantity: modif_commande.elements.modif_commande_product_quantity.value
+          })
+        })
+          .then(res => res.json())
+          .then(({success, user}) => {
+            if (!success)
+              alert("Error");
+          })
+      });
+  </script>

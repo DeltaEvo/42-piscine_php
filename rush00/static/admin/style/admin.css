@@ -1,0 +1,17 @@
+body
+{
+    background-image: url("../../resources/gray-tools.jpg")
+}
+
+.unauthorized {
+    padding: 32px;
+}
+.unauthorized .unauthorized_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unauthorized h3 {
+    text-align: center;
+}

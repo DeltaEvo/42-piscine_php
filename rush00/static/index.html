@@ -1,0 +1,346 @@
+<title>Minion store</title>
+<link rel="stylesheet" href="style/root.css"/>
+<link rel="stylesheet" href="style/nav.css"/>
+<link rel="stylesheet" href="style/menu.css"/>
+<link rel="stylesheet" href="style/imgid.css"/>
+<link rel="stylesheet" href="style/login.css">
+<link rel="stylesheet" href="style/slideshow.css"/>
+<link rel="stylesheet" href="style/footer.css" />
+<link rel="stylesheet" href="style/cart.css" />
+<link rel="stylesheet" href="admin/style/manage_users.css">
+
+<nav class="header">
+  <h1 class="title">Minion store @ 42</h1>
+  <div class="search">
+    <input type="text" id="search"/>
+  </div>
+  <with-user role="admin">
+      <div slot="logged">
+          <a href="admin/index.html">acces admin</a>
+      </div>
+  </with-user>
+  <with-user class="auth">
+    <div slot="loading">
+      Loading ...
+    </div>
+
+      <div slot="logged">
+      Welcome
+      <user-name></user-name>
+      <user-img></user-img>
+      <button id="modify_user_btn">Modifier compte</button>
+      <button id="logout_btn">Se deconnecter</button>
+    </div>
+    <div slot="none">
+      <button id="login_btn">S'Identifiez</button>
+    </div>
+  </with-user>
+  <div class="cart" id="cart_btn">
+    <cart-count class="badge"></cart-count>
+    <img src="/resources/cart.svg">
+    <cart-total></cart-total>
+  </div>
+</nav>
+<shop-categories id="categories"></shop-categories>
+<!--Slideshow-->
+<div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <img src="resources/Debilus.jpg" title="Debilus" alt="Debilus" style="width:400px; height: 300px;">
+    <div class="slidetext">Debilus</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="resources/Broum_Broum.jpg" title="Broum Broum" alt="Broum Broum" style="width:400px; height:300px;">
+    <div class="slidetext">Broum Broum</div>
+  </div>
+
+  <div class="mySlides fade">
+    <img src="resources/Bobo.jpg" title="Bobo" alt="Bobo" style="width:400px; height: 300px;">
+    <div class="slidetext">Bobo</div>
+  </div>
+</div>
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+</div>
+
+<shop-products id="products"></shop-products>
+
+<div class="footerdiv">
+<div class="footer-payment">
+  <img class="payment-mastercard" src="resources/mastercard-logo.png" title="mastercard" alt="mastercard">
+  <img class="payment-mastercard" src="resources/visa-logo.png" title="mastercard" alt="mastercard">
+  <img class="payment-mastercard" src="resources/american-express-logo.png" title="mastercard" alt="mastercard">
+  <img style="background-color:white;" class="payment-mastercard" src="resources/paypal-logo.png" title="mastercard" alt="mastercard">
+</div>
+</div>
+
+
+    <!---Page pour login-->
+<form id="login">
+  <div class="imgcontainer">
+    <img src="../resources/minion.jpeg" alt="minion" class="minion">
+  </div>
+
+  <div>
+    <b>Username</b>
+    <input type="text" placeholder="Enter Username" name="username" required="required">
+    <b>Password</b>
+    <input type="password" placeholder="Enter Password" name="password" required="required">
+    <input type="checkbox" checked="checked" name="remember">
+    Remember me
+    <button id="login_submit">Login</button>
+    <button id="signup_submit">Sign up</button>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" class="cancelbtn">Cancel</button>
+    <span class="psw">Forgot
+      <a href="#">password?</a>
+    </span>
+  </div>
+</form>
+
+ <!---Page pour modify user-->
+ <form id="modify_user">
+    <div>
+      <b>User name</b>
+      <input type="text" placeholder="Enter user Name" name="modify_user_name" required="required">
+       <br />
+       <br />
+       <b>passwd</b>
+       <input type="password" placeholder="Enter user passwd" name="user_passwd" required="required">
+        <br />
+        <b>New passwd</b>
+        <input type="password" placeholder="Enter new user passwd" name="modified_user_passwd" required="required">
+         <br />
+      <button style="float:right" id="modify_user_btn_valid">modify user</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+      <button style="float:left" type="button" id="modify_user_cancel_btn" class="cancelbtn">Cancel</button>
+      <br />
+      <br />
+      <button style="float:right" type="button" id="delete_user_btn" class="cancelbtn">Delete account</button>
+    </div>
+  </form>
+  
+
+  
+<div id="cart">
+  <div class="bar">
+    <h3>Cart</h3>
+    <button id="cart_close_btn">
+      X
+    </button>
+  </div>
+  <div class="content">
+    <shop-products from="cart"></shop-products>
+  </div>
+  <div class="bottom">
+    <p>Total: <cart-total></cart-total></p>
+    <button id="cart_pay">Payer</button>
+  </div>
+</div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1
+  }
+  slides[slideIndex - 1].style.display = "block";
+  setTimeout(showSlides, 5000); // Change image every 5 seconds
+}
+</script>
+<script src="/components/with-user.js"></script>
+<script src="/components/user-name.js"></script>
+<script src="/components/user-img.js"></script>
+<script src="/components/shop-product.js"></script>
+<script src="/components/shop-products.js"></script>
+<script src="/components/shop-categories.js"></script>
+<script src="/components/cart-count.js"></script>
+<script src="/components/cart-total.js"></script>
+<script>
+  const login = document.getElementById("login");
+
+  login.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
+  document.getElementById("login_submit").addEventListener("click", () => {
+    fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({username: login.elements.username.value, password: login.elements.password.value})
+    })
+      .then(res => res.json())
+      .then(({success, user}) => {
+        if (success) {
+          login
+            .classList
+            .remove("active");
+          window.user = user;
+          window.dispatchEvent(new Event("user-connect"));
+        } else
+          alert("Invalid password or username");
+      })
+  });
+
+  document.getElementById("signup_submit").addEventListener("click", () => {
+    fetch("/api/auth/signup", {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({username: login.elements.username.value, password: login.elements.password.value})
+    })
+      .then(res => res.json())
+      .then(({success, user}) => {
+        if (success) {
+          login
+            .classList
+            .remove("active");
+          window.user = user;
+          window.dispatchEvent(new Event("user-connect"));
+        } else
+          alert("Username already taken");
+      })
+  });
+
+  document
+    .getElementById("logout_btn")
+    .addEventListener("click", () => {
+      fetch("/api/auth/logout");
+      window.user = false;
+      window.dispatchEvent(new Event("user-connect"));
+    });
+
+  document
+    .getElementById("login_btn")
+    .addEventListener("click", () => {
+      login
+        .classList
+        .add("active");
+    });
+
+  const products = document.getElementById("products");
+
+  document
+    .getElementById("search")
+    .addEventListener("input", ({target}) => {
+      products.setAttribute('filter', target.value)
+    })
+
+  const cart = document.getElementById("cart")
+
+  document.getElementById("cart_btn").addEventListener("click", () => {
+    cart.classList.add("active");
+  });
+
+  document.getElementById("cart_close_btn").addEventListener("click", () => {
+    cart.classList.remove("active");
+  });
+
+  function sendOrder(details, cart) {
+    return fetch("/api/order", {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        details,
+        cart: cart.map(({ id, quantity }) => ({ id, quantity }))
+      })
+    })
+      .then(res => res.json())
+      .then(({ success }) => success)
+      .catch(() => false);
+  }
+
+  document.getElementById("cart_pay").addEventListener("click", () => {
+    const user_cart = window.shop_cart || [];
+
+    const supportedInstruments = [{
+      supportedMethods: 'basic-card',
+      data: {
+        supportedNetworks: ['amex', 'jcb', 'visa'], 
+        supportedTypes: ['debit', 'credit', 'prepaid']
+      }
+    }];
+
+    const details = {
+      total: {
+        label: 'Minion Store',
+        amount: {
+          currency: 'EUR',
+          value: (user_cart.reduce((curr, el) => curr + el.price * el.quantity, 0) / 100).toFixed(2)
+        }
+      },
+      displayItems: user_cart.map(({ name, price, quantity }) => ({
+        label: `${quantity} * ${name}`,
+        amount: { currency: 'EUR', value: (price * quantity / 100).toFixed(2) }
+      }))
+    };
+
+    const request = new PaymentRequest(supportedInstruments, details);
+
+    request.show().then(response => {
+      sendOrder(response.details, user_cart)
+        .then(success => {
+          response.complete(success ? 'success' : 'fail');
+          cart.classList.remove("active");
+          window.shop_cart = [];
+          window.dispatchEvent(new Event("cart-modify"));
+        })
+    });
+  });
+  document.getElementById("categories").addEventListener("category-select", arg => {
+    if (arg.detail == products.getAttribute('category')) {
+      products.removeAttribute('category')
+    } else {
+      products.setAttribute('category', arg.detail);
+    }
+  })
+</script>
+
+      <!--script pour page modify user -->
+      <script>
+          document
+          .getElementById("modify_user_btn")
+          .addEventListener("click", () => {
+            modify_user
+              .classList
+              .add("active");
+          })
+      
+              document
+            .getElementById("modify_user_cancel_btn")
+            .addEventListener("click", () => {
+              modify_user
+                .classList
+                .remove("active");
+            })
+        </script>
